@@ -28,6 +28,19 @@
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
                             </div>
+                            <!--
+                            <div class="form-group">
+                                <label for="InputName">Groupe de l'article</label>
+                                <select class=form-control required>
+                                    <option value=Art>Art</option>
+                                    <option value=Litterature>Litterature</option>
+                                    <option value=Musique>Musique</option>
+                                    <option value=Politique>Politique</option>
+                                    <option value=Sport>Sport</option>
+                                    <option value=Autres>Autres</option>
+                                </select>
+                            </div>
+                            -->
                             <div class="form-group">
                                 <label for="InputMessage">Ecrivez votre article</label>
                                 <div class="input-group">
@@ -35,6 +48,7 @@
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
                             </div>
+                            <input type="hidden" name="auteur" value ={{ Auth::user()->name }}> <!-- on envoie le nom de l'auteur qui ecrit l'article -->
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}"> <!-- Token pour sécurisé l'envoie des information -->
                             <input type="submit" name="submit" id="submit" value="Ecrire"  class="btn btn-info pull-right">
                         </div>

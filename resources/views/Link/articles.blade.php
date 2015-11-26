@@ -28,19 +28,20 @@
                                 </a>
                                     <p> {{$article->message}}</p>
 
-                                <p class="post-meta">Poste par <a href="{{ route('apropos') }}">{{$article->autor}}</a> le : {{$article->created_at}}</p>
+                                <p class="post-meta">Poste par <a href="{{ route('articlesbyauthor',['name'=>$article->autor]) }}">{{$article->autor}}</a> le : {{$article->created_at}}</p>
                             </div>
 
                             <hr>
                             @endforeach
+                                    <!-- Pager -->
+                        <ul class="pagination pagination-lg">
+
+                               {!! $articles->render() !!}
+
+                        </ul>
 
 
-                    <!-- Pager -->
-                    <ul class="pager">
-                        <li class="next">
-                            <a href="#">Older Posts &rarr;</a>
-                        </li>
-                    </ul>
+
                 </div>
             </div>
         </div>

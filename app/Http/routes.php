@@ -10,26 +10,31 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+// page de tous les articles
 Route::get('/', ['as'=>'articles',
 	'uses'=>'LinkController@articles']);
-
+//page a propos
 Route::get('/about',['as'=>'apropos',
 	'uses'=>'LinkController@about']);
 
-
+//pas de connexion
 Route::get('/connexion',['as'=>'connexion',
 	'uses'=>'LinkController@connexion']);
 
+//Page pour écrire article
 Route::get('/admin',['as'=>'administrateur',
 	'uses'=>'LinkController@admin']);
 
 
-
+//Création d'article
 Route::post('/create', ['as' => 'createArticle',
 	'uses' => 'LinkController@createArticle']);
 
-
+//Page d'articles de l'utilisateur
+Route::get('/articles/{name}',[
+	'as'=>'articlesbyauthor',
+	'uses'=>'LinkController@articlesbyauthor'
+]);
 
 // Pour l'enregistrement
 Route::get('/register',['as'=>'register',
@@ -43,6 +48,19 @@ Route::post('auth/register', [
 	'as' => 'postRegister',
 	'uses' => 'Auth\AuthController@postRegister'
 ]);
+
+//Suppression d'un article
+
+Route::get('/delete/{id}',[
+	'as'=>'deleteArticle',
+	'uses'=>'LinkController@deleteArticle'
+]);
+
+//Modifiction d'un article
+
+Route::match(['get', 'post'], '/update/{id}',[ //match car il peux y voir un get ou un post : get-> recuperer id de l'articles post -> lors de modification on recupere les modifications
+	'as'=>'updateArticle',
+	'uses'=>'LinkController@updateArticle']);
 
 //routes pour l'authentification
 

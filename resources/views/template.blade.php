@@ -10,9 +10,10 @@
 
     <title>Clean Blog</title>
     <!-- Bootstrap-->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
+
     <!-- Custom CSS -->
-    <link href="css/blog.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('css/blog2.css') }}">
 
 
 </head>
@@ -31,28 +32,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ route('articles') }}">I'm a Blogger</a>
+                <a class="navbar-brand" href="{{ route('articles') }}">#Fsociety</a>
             </div>
 
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    @if(Auth::check())
-                        <li><a href="{{ route('articles') }}">{{ Auth::user()->name }}</a></li>
 
+                    @if(Auth::check()) <!-- Si connecté il y a -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ Auth::user()->name }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="adropdown" href="{{ route('administrateur') }}">Ecrire un article</a></li>
+                            <li><a class="adropdown" href="{{ route('articlesbyauthor',['name'=>Auth::user()->name]) }}">Voir mes articles</a></li>
+                            <li><a  class="adropdown" href="/auth/logout">Deconnexion</a></li>
+
+                        </ul>
+                    </li>
                     @else
-                    @endif
+                        @endif
                     <li>
                         <a href="{{ route('articles') }}">Articles</a>
                     </li>
-                    <li>
-                        <a href="{{ route('apropos') }}">A propos</a>
-                    </li>
+                    <li><a href="{{ route('apropos') }}">A propos</a></li>
                     @if(Auth::check())
-                        <li>
-                            <a href="/auth/logout">Deconnexion</a>
-                        </li>
                     @else
                         <li>
                             <a href="{{ route('connexion') }}">Connexion</a>
@@ -82,7 +88,14 @@
     @yield('contenu')
 
 
-            <!-- Footer -->
+            <!-- jQuery -->
+    <script src="{{ URL::asset('js/jquery.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
