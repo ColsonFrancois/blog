@@ -35,6 +35,11 @@ Route::get('/articles/{name}',[
 	'as'=>'articlesbyauthor',
 	'uses'=>'LinkController@articlesbyauthor'
 ]);
+//page d'un article via son id
+Route::get('/article/{id}', [
+	'as'=>'articlebyid',
+	'uses'=>'LinkController@articlebyid'
+]);
 
 // Pour l'enregistrement
 Route::get('/register',['as'=>'register',

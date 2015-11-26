@@ -18,7 +18,7 @@
 
                     @foreach($articles as $article)
                             <div class="post-preview">
-                                <a href="post.html">
+                                <a href="{{route('articlebyid',['id'=>$article->id])}}">
                                     <h2 class="post-title">
                                     {{$article->title}}
                                     </h2>
