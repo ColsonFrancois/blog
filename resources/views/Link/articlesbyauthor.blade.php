@@ -3,7 +3,7 @@
     <header class="intro-header" style="background-image: url('{{ asset('img/artbyauth-bg.jpg') }}')">
         @endsection
         @section('titreheader')
-            <h1>Explorez mon monde</h1>
+            <h1>Mon monde</h1>
         @endsection
         @section('commentaireheader')
             <span class="subheading">Voici mes ecrits</span>
@@ -21,23 +21,27 @@
                                     <h2 class="post-title">
                                         {{$article->title}}
                                     </h2>
+
                                     <h3 class="post-subtitle">
                                         {{$article->subtitle}}
                                     </h3>
                                 </a>
+
                                 <p> {{$article->message}}</p>
+                                @if(Auth::check())
+                                @if($article->autor ==  Auth::user()->name) <!-- ne pas utiliser les doubles accolades dans la comparaison de string -->
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <a href="{{ route('updateArticle',['id'=>$article->id]) }}"><button type="button" class="btn btn-default">Modifier</button></a>
+                                    <a href="{{ route('deleteArticle',['id'=>$article->id]) }}" ><button type="button" class="btn btn-default" >Supprimer</button></a>
 
-                                 @if($article->autor ==  Auth::user()->name) <!-- ne pas utiliser les doubles accolades dans la comparaison de string -->
-                            </div>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default"><a href="{{ route('updateArticle',['id'=>$article->id]) }}">Modifier</a></button>
-                                <button type="button" class="btn btn-default" ><a href="{{ route('deleteArticle',['id'=>$article->id]) }}" >Supprimer</a></button>
-
-                            </div>
-                                     @else
+                                </div>
+                                @else
                                 @endif
+                                @else
+                                    @endif
 
-                            <hr>
+                                <hr>
+                            </div>
                             @endforeach
                                     <!-- Pager -->
                             <ul class="pagination pagination-lg">
@@ -45,7 +49,6 @@
                                 {!! $articles->render() !!}
 
                             </ul>
-
 
 
                     </div>

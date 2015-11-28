@@ -14,7 +14,7 @@
 		@section('contenu')
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							<strong>Whoops!</strong> Il y a un soucis avec l'un des champs.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>

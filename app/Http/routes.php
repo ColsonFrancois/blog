@@ -41,6 +41,10 @@ Route::get('/article/{id}', [
 	'uses'=>'LinkController@articlebyid'
 ]);
 
+//Ecrire commentaire
+Route::post('/comments', ['as' => 'comment',
+	'uses' => 'LinkController@comment']);
+
 // Pour l'enregistrement
 Route::get('/register',['as'=>'register',
 	'uses'=>'LinkController@register']);

@@ -51,7 +51,7 @@
                                                 class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
                             </div>
-                            <input type="hidden" name="auteur" value={{ Auth::user()->name }}>
+
                             <!-- on envoie le nom de l'auteur qui ecrit l'article -->
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                             <!-- Token pour sécurisé l'envoie des information -->

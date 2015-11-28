@@ -27,16 +27,17 @@
                                     </h3>
                                 </a>
                                     <p> {{$article->message}}</p>
-
-                                <p class="post-meta">Poste par <a href="{{ route('articlesbyauthor',['name'=>$article->autor]) }}">{{$article->autor}}</a> le : {{$article->created_at}}</p>
+                                <p class="post-meta">Poste par <a href="{{ route('articlesbyauthor',['name'=>$article->nom]) }}">{{$article->nom}}</a> le : {{$article->created_at}}</p>
                             </div>
-
-                            <hr>
+                        <hr>
                             @endforeach
+
+
+
                                     <!-- Pager -->
                         <ul class="pagination pagination-lg">
 
-                               {!! $articles->render() !!}
+
 
                         </ul>
 

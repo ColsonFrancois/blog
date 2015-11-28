@@ -4,6 +4,8 @@ body {
     font-size: 20px;
     color: #404040;
 }
+
+
 textarea
 {
     resize: none;
@@ -148,11 +150,11 @@ hr.small {
     font-size: 30px;
 }
 
+
 .post-preview
 {
-   /** background-color: black; **/
+    margin-bottom: 20px;
 }
-
 
 .post-preview>a {
     color: #404040;

@@ -12,7 +12,7 @@
 
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>whoops !</strong> Votre email ou votre mot de passe est incorect.<br><br>
+							<strong>whoops !</strong>Ce que vous avez entrez ne correspond pas.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -22,7 +22,7 @@
 					@endif
 					<div class="container">
 						<div class="row">
-							<form role="form" method="post" action="/auth/login" >
+							<form role="form-group" method="post" action="/auth/login" >
 								<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 									<div class="form-group">
 										<div class="input-group">
@@ -45,7 +45,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-								<a href="{{ route('register') }}" class="pull-right">Pas encore inscrit ? </a>
+								<a style="margin-top: 20px" href="{{ route('register') }}" class="pull-right"><u>Pas encore inscrit ?</u> </a>
 							</div>
 						</div>
 					</div>
