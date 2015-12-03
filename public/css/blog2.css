@@ -72,12 +72,16 @@ hr.small {
     left: 0;
     width: 100%;
     z-index: 3;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+
+
 }
 .navbar-custom .navbar-brand {
+    font-family: Lobster, "Helvetica Neue", Helvetica, Arial, cursive;
     color: #fff;
     padding: 20px;
 }
+
 .navbar-custom .navbar-brand:hover, .navbar-custom .navbar-brand:focus {
     color: rgba(255, 255, 255, .8);
 }

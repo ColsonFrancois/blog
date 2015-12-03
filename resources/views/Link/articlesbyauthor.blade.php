@@ -47,7 +47,6 @@
                             <ul class="pagination pagination-lg">
 
                                 {!! $articles->render() !!}
-
                             </ul>
 
 

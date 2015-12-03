@@ -14,11 +14,21 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ URL::asset('css/blog2.css') }}">
-
+    <!-- Police stylée (merci googleFont) pas oublier CSS -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
+
+
+
 @if(Session::has('ok'))
+
     <h2>{{ Session::get('ok') }}</h2>
     @endif
             <!-- Navigation -->

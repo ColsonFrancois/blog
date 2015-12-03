@@ -7,15 +7,22 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 
 class LinkController extends \App\Http\Controllers\Controller
 {
     public function articles()
     {
-        $articles = User::join('articles', 'users.id','=','articles.autor')
-            ->select('users.name as nom','articles.id' ,'articles.message', 'articles.title', 'articles.subtitle', 'articles.created_at')
-            ->get();
+        $articles = User::join('articles', 'users.id', '=', 'articles.autor')//On joint les table articles et utilisateurs pour récupéré le nom des utilisateurs createurs de chaque article
+        ->select('users.name as autor',
+            'articles.id as id',
+            'articles.message as message',
+            'articles.title as title',
+            'articles.subtitle as subtitle',
+            'articles.created_at as created_at')
+            ->orderBy('articles.created_at', 'desc')
+            ->paginate(5);
 
 
         // $articles = Article::orderBy('created_at', 'desc')->paginate(5);
@@ -45,14 +52,46 @@ class LinkController extends \App\Http\Controllers\Controller
 
     public function articlesbyauthor($name)
     {
-        $articles = Article::where('autor', $name)->orderBy('created_at', 'desc')->paginate(5);
+
+        $articles = User::join('articles', 'users.id', '=', 'articles.autor')
+            ->select('users.name as autor',
+                'articles.id as id',
+                'articles.title as title',
+                'articles.subtitle as subtitle',
+                'articles.message as message')
+            ->orderBy('articles.created_at', 'desc')
+            ->where('users.name', $name)
+            ->paginate(5);
+        // $articles = Article::where('autor', $name)->orderBy('created_at', 'desc')->paginate(5);
         return view('link/articlesbyauthor')->with('articles', $articles); //Passer les articles récuperé dans la bdd a la vue
     }
 
     public function articlebyid($id)
     {
-        $articles = Article::find($id);
-        return view('link/articlebyid')->with('articles', $articles); //on passe les information de l'articles récupéré par son id
+           // $articles = Article::find($id);
+        $articles = Article::join('users', 'users.id','=', 'articles.autor')
+            ->select('users.name as autor',
+    'articles.title as title',
+    'articles.subtitle as subtitle',
+    'articles.message as message',
+    'articles.created_at as created_at',
+    'articles.id as id')
+            ->where('articles.id', $id)
+            ->get();
+
+
+        $comments  = Article::join('comments', 'articles.id', '=', 'comments.article')
+            ->join('users', 'users.id','=','comments.autor')
+            ->select('comments.message as comment',
+                'users.name as autor',
+                'comments.created_at as date')
+            ->where('articles.id', $id)
+            ->get();
+
+       // return view('link/articlebyid')->with('articles', $articles); //on passe les information de l'articles récupéré par son id
+      return view('link/articlebyid',array(
+            'articles' => $articles,
+            'comments' => $comments));
     }
 
     public function deleteArticle($id)
@@ -93,7 +132,7 @@ class LinkController extends \App\Http\Controllers\Controller
     {
         $param = $request->except(['_token']);
         $comment = new \App\Comment;
-        $comment->autor = $param['autor'];
+        $comment->autor = Auth::user()->id;
         $comment->message = $param['comment'];
         $comment->article = $param['article'];
         $comment->save();
