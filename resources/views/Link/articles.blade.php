@@ -1,6 +1,6 @@
 @extends('../template')
 @section('photoheader')
-<header class="intro-header" style="background-image: url('img/bg.jpg')">
+<header class="intro-header" style="background-image: url('img/about.jpg')">
     @endsection
 @section('titreheader')
     <h1>Articles</h1>
@@ -27,7 +27,7 @@
                                     </h3>
                                 </a>
                                     <p> {{$article->message}}</p>
-                                <p class="post-meta">Poste par <a href="{{ route('articlesbyauthor',['name'=>$article->autor]) }}">{{$article->autor}}</a> le : {{$article->created_at}}</p>
+                                <p class="post-meta">Poste par <a href="{{ route('articlesbyauthor',['name'=>$article->autor]) }}">{{$article->autor}}</a> le : {{ date('d-m-Y', strtotime($article->created_at)) }}</p>
                             </div>
                         <hr>
                             @endforeach

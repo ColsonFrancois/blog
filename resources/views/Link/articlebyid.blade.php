@@ -1,6 +1,6 @@
 @extends('../template')
 @section('photoheader')
-    <header class="intro-header" style="background-image: url('{{ asset('img/articlesbyid-bg.jpg') }}')">
+    <header class="intro-header" style="background-image: url('{{ asset('img/articlesbyid.jpg') }}')"/>
         @endsection
         @foreach($articles as $article)
         @section('titreheader')
@@ -8,7 +8,7 @@
         @endsection
 
       @section('commentaireheader')
-            <span class="subheading">{{$article->subtitle}}</span>
+            <span class="subheading">{{$article->title}}</span>
             @endsection
 
             @section('contenu')
@@ -30,24 +30,19 @@
 
                             <p class="post-meta">Poste par <a
                                         href="{{ route('articlesbyauthor',['name'=>$article->autor]) }}">{{$article->autor}}</a>
-                                le : {{$article->created_at}}</p>
+                                le : {{ date('d-m-Y', strtotime($article->created_at)) }}&nbsp;&nbsp;
+                                @if(Auth::check())
+                                    @if($article->autor ==  Auth::user()->name)
+                                <a href="{{ route('updateArticle',['id'=>$article->id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;&nbsp;
+                                <a href="{{ route('deleteArticle',['id'=>$article->id]) }}"><span class="glyphicon glyphicon-trash"></span></a>
+                                    @else
+                                    @endif
+                                @endif
+                            </p>
 
-                            @if(Auth::check())
-                            @if($article->autor ==  Auth::user()->name) <!-- ne pas utiliser les doubles accolades dans la comparaison de string -->
 
-                            <div class="btn-group" role="group" >
-                                <a href="{{ route('updateArticle',['id'=>$article->id]) }}">
-                                    <button type="button" class="btn btn-default">Modifier</button>
-                                </a>
-                                <a href="{{ route('deleteArticle',['id'=>$article->id]) }}">
-                                    <button type="button" class="btn btn-default">Supprimer</button>
-                                </a>
 
-                            </div>
-                            @else
-                            @endif
-                            @else
-                            @endif
+
 
                         </div>
                         <hr>
@@ -55,34 +50,35 @@
 
 
                     <!-- Comments Form -->
-                    @if(Auth::check())
+
                         <div class="container">
 
                         </div>
+                    @if(Auth::check())
                         <div class="well">
                             <h4>Laissez un commentaire :</h4>
 
                             <form role="form" method="post" action="{{route('comment')}}">
                                 <div class="form-group">
                                     <textarea name="comment" class="form-control" rows="6" required></textarea>
-
                                 </div>
                                 <input type="hidden" name="article" value="{{$article->id}}">
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                <button type="submit" class="btn btn-info pull-right">Ecrire</button>
+                                <button type="submit" class="btn btn-primary">Commenter</button>
                             </form>
                         </div>
+                    <hr>
                         @else
                         @endif
-@endforeach
+                        @endforeach
                         @foreach($comments as $comment)
                                 <!-- Comment -->
                         <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="http://placehold.it/64x64" alt="">
+                            <a class="pull-left" href="{{ route('articlesbyauthor',['name'=>$comment->autor]) }}">
+                                <img class="media-object img-responsive" width="64" height="64" src="{{$comment->image}}" alt="">
                                 <div class="media-body">
-                                    <h4 class="media-heading"> {{$comment->autor}}  </a>
-                            <small>{{$comment->date}}</small>
+                                    <h4 class="media-heading"> {{$comment->autor}}  </a>&nbsp;
+                            <small>{{ date('d-m-Y G:i:s', strtotime($comment->date)) }}</small>
                             </h4>
                             {{$comment->comment}}
                         </div>

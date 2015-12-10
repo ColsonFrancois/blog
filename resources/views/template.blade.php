@@ -12,14 +12,13 @@
     <!-- Bootstrap-->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
 
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ URL::asset('css/blog2.css') }}">
+    <link href="{{ URL::asset('css/blog2.css') }}" rel="stylesheet" type="text/css" >
     <!-- Police stylée (merci googleFont) pas oublier CSS -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 </head>
@@ -32,7 +31,7 @@
     <h2>{{ Session::get('ok') }}</h2>
     @endif
             <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <nav class="navbar transparent navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Mobile-->
             <div class="navbar-header page-scroll">
@@ -47,7 +46,7 @@
 
 
 
-                    <a class="navbar-brand" href="{{ route('articles') }}">Fsociety</a>
+                    <a class="navbar-brand" href="{{ route('articles') }}">Hurricane</a>
 
             </div>
 
@@ -60,9 +59,9 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">{{ Auth::user()->name }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="adropdown" href="{{ route('administrateur') }}">Ecrire un article</a></li>
-                            <li><a class="adropdown" href="{{ route('articlesbyauthor',['name'=>Auth::user()->name]) }}">Voir mes articles</a></li>
-                            <li><a  class="adropdown" href="/auth/logout">Deconnexion</a></li>
+                            <li><a class="adropdown" href="{{ route('administrateur') }}"><span class="glyphicon glyphicon-pencil"></span> &nbsp;   Ecrire un article</a></li>
+                            <li><a class="adropdown" href="{{ route('articlesbyauthor',['name'=>Auth::user()->name]) }}"><span class="glyphicon glyphicon-eye-open"></span> &nbsp;Voir mes articles</a></li>
+                            <li><a  class="adropdown" href="/auth/logout"><span class="glyphicon glyphicon-log-in"></span> &nbsp;Deconnexion</a></li>
 
                         </ul>
                     </li>
@@ -84,6 +83,7 @@
         </div>
 
     </nav>
+    <header>
     <!-- Header Photo -->
     @yield('photoheader')
     <div class="container">
@@ -104,6 +104,8 @@
 
             <!-- jQuery -->
     <script src="{{ URL::asset('js/jquery.js') }}"></script>
+    <script src="{{ URL::asset('js/blog.js') }}"></script>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
@@ -114,32 +116,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
                     <p class="copyright text-muted">Webmaster & Webdesigner : <a
                                 href="https://www.facebook.com/francois.colson"> Colson Francois. </a></p>
                 </div>

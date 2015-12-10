@@ -1,6 +1,6 @@
 @extends('../template')
 @section('photoheader')
-    <header class="intro-header" style="background-image: url('{{ asset('img/admin.jpg') }}')">
+    <header class="intro-header" style="background-image: url('{{ asset('img/administrator.jpg') }}')">
 
         @endsection
         @section('titreheader')
@@ -36,6 +36,17 @@
                                     <input type="text" class="form-control" name="sousTitre" id="sousTitre"
                                            value="{{ $article->subtitle or '' }}"
                                            placeholder="Entrez le Sous-titre de l'article" required>
+                                    <span class="input-group-addon"><span
+                                                class="glyphicon glyphicon-asterisk"></span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputName">Image de votre article</label>
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="image" id="image"
+                                           value="{{ $article->image or '' }}"
+                                           placeholder="Entrez le liens de votre image" required>
                                     <span class="input-group-addon"><span
                                                 class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>

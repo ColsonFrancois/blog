@@ -1,6 +1,6 @@
 @extends('../template')
 @section('photoheader')
-	<header class="intro-header" style="background-image: url('img/header-bg.jpg')">
+	<header class="intro-header" style="background-image: url('img/connexion-bg.jpg')">
 		@endsection
 		@section('titreheader')
 			<h1>Connectez-vous</h1>
@@ -12,7 +12,7 @@
 
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>whoops !</strong>Ce que vous avez entrez ne correspond pas.<br><br>
+							<strong>Oupss !</strong>Une erreur est survenue.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>

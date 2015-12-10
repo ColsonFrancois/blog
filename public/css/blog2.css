@@ -27,9 +27,7 @@ a {
 a:hover, a:focus {
     color: #0085a1;
 }
-a img:hover, a img:focus {
-    cursor: zoom-in;
-}
+
 
 hr.small {
     max-width: 100px;
@@ -38,10 +36,8 @@ hr.small {
     border-color: #fff;
 }
 
-.navbar-custom .navbar-brand {
-    font-weight: 800;
-}
 .navbar-custom .nav li a {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 800;
@@ -49,6 +45,7 @@ hr.small {
 }
 
 .navbar-custom .nav .dropdown li a {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 800;
@@ -58,14 +55,14 @@ hr.small {
 .navbar-custom .nav .dropdown li a:hover
 {
     color: #0085a1;
-
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 
 
 
 .navbar-custom {
-    background: 0 0;
+    background: rgba(20,20,20,0.6);
     border-bottom: 1px solid transparent;
     position: absolute;
     top: 0;
@@ -80,12 +77,15 @@ hr.small {
     font-family: Lobster, "Helvetica Neue", Helvetica, Arial, cursive;
     color: #fff;
     padding: 20px;
+    font-weight: 800;
+    font-size: 24px;
 }
 
 .navbar-custom .navbar-brand:hover, .navbar-custom .navbar-brand:focus {
     color: rgba(255, 255, 255, .8);
 }
 .navbar-custom .nav li a {
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #fff;
     padding: 20px;
 }
@@ -102,11 +102,12 @@ hr.small {
     background-size: cover;
     -o-background-size: cover;
     margin-bottom: 50px;
+    height: 425px;
 }
 
 
 .intro-header .site-heading, .intro-header .post-heading, .intro-header .page-heading {
-    padding: 150px 0;
+    padding: 125px 0;
 }
 .intro-header .site-heading, .intro-header .page-heading {
     text-align: center;
@@ -185,7 +186,7 @@ hr.small {
 }
 .post-preview>.post-meta>a:hover, .post-preview>.post-meta>a:focus {
     color: #0085a1;
-    text-decoration: underline;
+
 }
 
 .post-preview>a>.post-title {
@@ -264,4 +265,32 @@ footer .copyright {
     cursor: not-allowed;
 }
 
+#imgvinyl
+{
+    position: relative;
+    z-index: 10;
+    width:150px;
+    height:150px;
+    border: none;
+}
+#mesarticles
+{
+    margin-bottom: 50px;
+}
 
+#vinyl{
+    display: block;
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: 0;
+    left: 38px;
+    z-index: 5;
+    margin-top:13px;
+}
+#hovertitle:hover
+{
+    color: #0085a1;
+
+
+}

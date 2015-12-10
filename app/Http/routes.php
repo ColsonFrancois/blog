@@ -18,12 +18,12 @@ Route::get('/about',['as'=>'apropos',
 	'uses'=>'LinkController@about']);
 
 //pas de connexion
-Route::get('/connexion',['as'=>'connexion',
+Route::get('/auth/login',['as'=>'connexion',
 	'uses'=>'LinkController@connexion']);
 
 //Page pour écrire article
 Route::get('/admin',['as'=>'administrateur',
-	'uses'=>'LinkController@admin']);
+	'uses'=>'LinkController@admin','middleware' => 'auth']);
 
 
 //Création d'article

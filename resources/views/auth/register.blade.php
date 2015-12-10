@@ -3,7 +3,7 @@
 	<a href="{{ route('connexion') }}">Connexion</a>
 @endsection
 @section('photoheader')
-	<header class="intro-header" style="background-image: url('img/register-bg.jpg')">
+	<header class="intro-header" style="background-image: url('img/inscription.jpg')">
 		@endsection
 		@section('titreheader')
 			<h1>Inscrivez-vous</h1>
@@ -36,6 +36,12 @@
 									<div class="form-group">
 										<div class="input-group">
 											<input type="text" class="form-control" name="email" placeholder="Votre Email" value="{{ old('email') }}" required>
+											<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<input type="text" class="form-control" name="image" placeholder="Lien de votre image de profil" required>
 											<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 										</div>
 									</div>

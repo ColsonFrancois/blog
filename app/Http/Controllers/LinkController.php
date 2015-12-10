@@ -41,6 +41,7 @@ class LinkController extends \App\Http\Controllers\Controller
 
     public function admin()
     {
+
         return view('link/administrator');
     }
 
@@ -58,12 +59,14 @@ class LinkController extends \App\Http\Controllers\Controller
                 'articles.id as id',
                 'articles.title as title',
                 'articles.subtitle as subtitle',
-                'articles.message as message')
+                'articles.image as image')
             ->orderBy('articles.created_at', 'desc')
             ->where('users.name', $name)
-            ->paginate(5);
+            ->paginate(16);
         // $articles = Article::where('autor', $name)->orderBy('created_at', 'desc')->paginate(5);
-        return view('link/articlesbyauthor')->with('articles', $articles); //Passer les articles récuperé dans la bdd a la vue
+        return view('link/articlesbyauthor', array(
+            'articles'=> $articles,
+            'nom'=>$name));
     }
 
     public function articlebyid($id)
@@ -84,6 +87,7 @@ class LinkController extends \App\Http\Controllers\Controller
             ->join('users', 'users.id','=','comments.autor')
             ->select('comments.message as comment',
                 'users.name as autor',
+                'users.image as image',
                 'comments.created_at as date')
             ->where('articles.id', $id)
             ->get();
@@ -98,6 +102,8 @@ class LinkController extends \App\Http\Controllers\Controller
     {
         $articles = Article::find($id);
         $articles->delete();
+        $comment = Comment::where('article', $id);
+        $comment->delete(); //On supprimer les commentaires lié a cet article
         return redirect()->route('articles');
     }
 
@@ -110,6 +116,7 @@ class LinkController extends \App\Http\Controllers\Controller
             $article->title = $param['Titre'];
             $article->subtitle = $param['sousTitre'];
             $article->message = $param['Message'];
+            $article->image = $param['image'];
             $article->save();
             return redirect()->route('articles');
         }
@@ -124,6 +131,7 @@ class LinkController extends \App\Http\Controllers\Controller
         $article->title = $param['Titre'];
         $article->subtitle = $param['sousTitre'];
         $article->message = $param['Message'];
+        $article->image = $param['image'];
         $article->save();
         return redirect()->route('articles'); //Rediriger vers la vue d'acceuil
     }
