@@ -36,7 +36,12 @@ class LinkController extends \App\Http\Controllers\Controller
 
     public function connexion()
     {
-        return view('auth/login');
+        if (Auth::check()) {
+            return redirect()->action('LinkController@articles');
+        }
+            return view('auth/login');
+
+
     }
 
     public function admin()
@@ -48,7 +53,15 @@ class LinkController extends \App\Http\Controllers\Controller
 
     public function register()
     {
-        return view('auth/register');
+        if (Auth::check()) {
+            return redirect()->action('LinkController@articles');
+        }
+            return view('auth/register');
+
+    }
+    public function calendrier($name)
+    {
+        return view('link/calendar');
     }
 
     public function articlesbyauthor($name)
@@ -65,26 +78,26 @@ class LinkController extends \App\Http\Controllers\Controller
             ->paginate(16);
         // $articles = Article::where('autor', $name)->orderBy('created_at', 'desc')->paginate(5);
         return view('link/articlesbyauthor', array(
-            'articles'=> $articles,
-            'nom'=>$name));
+            'articles' => $articles,
+            'nom' => $name));
     }
 
     public function articlebyid($id)
     {
-           // $articles = Article::find($id);
-        $articles = Article::join('users', 'users.id','=', 'articles.autor')
+        // $articles = Article::find($id);
+        $articles = Article::join('users', 'users.id', '=', 'articles.autor')
             ->select('users.name as autor',
-    'articles.title as title',
-    'articles.subtitle as subtitle',
-    'articles.message as message',
-    'articles.created_at as created_at',
-    'articles.id as id')
+                'articles.title as title',
+                'articles.subtitle as subtitle',
+                'articles.message as message',
+                'articles.created_at as created_at',
+                'articles.id as id')
             ->where('articles.id', $id)
             ->get();
 
 
-        $comments  = Article::join('comments', 'articles.id', '=', 'comments.article')
-            ->join('users', 'users.id','=','comments.autor')
+        $comments = Article::join('comments', 'articles.id', '=', 'comments.article')
+            ->join('users', 'users.id', '=', 'comments.autor')
             ->select('comments.message as comment',
                 'users.name as autor',
                 'users.image as image',
@@ -92,8 +105,8 @@ class LinkController extends \App\Http\Controllers\Controller
             ->where('articles.id', $id)
             ->get();
 
-       // return view('link/articlebyid')->with('articles', $articles); //on passe les information de l'articles récupéré par son id
-      return view('link/articlebyid',array(
+        // return view('link/articlebyid')->with('articles', $articles); //on passe les information de l'articles récupéré par son id
+        return view('link/articlebyid', array(
             'articles' => $articles,
             'comments' => $comments));
     }

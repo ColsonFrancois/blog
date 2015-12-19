@@ -15,6 +15,7 @@
 
     <!-- Custom CSS -->
     <link href="{{ URL::asset('css/blog2.css') }}" rel="stylesheet" type="text/css" >
+
     <!-- Police stylée (merci googleFont) pas oublier CSS -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -61,7 +62,8 @@
                         <ul class="dropdown-menu">
                             <li><a class="adropdown" href="{{ route('administrateur') }}"><span class="glyphicon glyphicon-pencil"></span> &nbsp;   Ecrire un article</a></li>
                             <li><a class="adropdown" href="{{ route('articlesbyauthor',['name'=>Auth::user()->name]) }}"><span class="glyphicon glyphicon-eye-open"></span> &nbsp;Voir mes articles</a></li>
-                            <li><a  class="adropdown" href="/auth/logout"><span class="glyphicon glyphicon-log-in"></span> &nbsp;Deconnexion</a></li>
+                            <li><a  class="adropdown" href="{{route('calendar', ['name'=>Auth::user()->name])}}" ><span class="glyphicon glyphicon-list"></span> &nbsp;Mon calendrier</a></li>
+                            <li><a  class="adropdown"href="/auth/logout" ><span class="glyphicon glyphicon-log-in"></span> &nbsp;Deconnexion</a></li>
 
                         </ul>
                     </li>

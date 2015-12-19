@@ -16,6 +16,11 @@ Route::get('/', ['as'=>'articles',
 //page a propos
 Route::get('/about',['as'=>'apropos',
 	'uses'=>'LinkController@about']);
+//page calendrier
+Route::get('/calendrier/{name}',[
+	'as'=>'calendar',
+	'uses'=>'LinkController@calendrier'
+]);
 
 //pas de connexion
 Route::get('/auth/login',['as'=>'connexion',

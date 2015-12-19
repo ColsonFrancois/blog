@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            {{$nom}}
+                            <span class="glyphicon glyphicon-user"></span> {{$nom}}
                         </h1>
                         <br>
                     </div>
