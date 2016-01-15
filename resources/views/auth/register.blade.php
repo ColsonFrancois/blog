@@ -14,7 +14,7 @@
 		@section('contenu')
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> Il y a un soucis avec l'un des champs.<br><br>
+							<strong>Whoopss !</strong>something went wrong.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -41,7 +41,7 @@
 									</div>
 									<div class="form-group">
 										<div class="input-group">
-											<input type="text" class="form-control" name="image" placeholder="Lien de votre image de profil" required>
+											<input type="text" class="form-control" name="image" placeholder="Lien de votre image de profil">
 											<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 										</div>
 									</div>

@@ -26,12 +26,12 @@ class LinkController extends \App\Http\Controllers\Controller
 
 
         // $articles = Article::orderBy('created_at', 'desc')->paginate(5);
-        return view('link/articles')->with('articles', $articles); //Passer les articles récuperé dans la bdd a la vue
+        return \view('link/articles')->with('articles', $articles); //Passer les articles récuperé dans la bdd a la vue
     }
 
     public function about()
     {
-        return view('link/about');
+        return \view('Link/about');
     }
 
     public function connexion()
@@ -39,7 +39,7 @@ class LinkController extends \App\Http\Controllers\Controller
         if (Auth::check()) {
             return redirect()->action('LinkController@articles');
         }
-            return view('auth/login');
+            return \view('auth/login');
 
 
     }
@@ -47,7 +47,7 @@ class LinkController extends \App\Http\Controllers\Controller
     public function admin()
     {
 
-        return view('link/administrator');
+        return \view('Link/administrator');
     }
 
 
@@ -56,13 +56,10 @@ class LinkController extends \App\Http\Controllers\Controller
         if (Auth::check()) {
             return redirect()->action('LinkController@articles');
         }
-            return view('auth/register');
+            return \view('auth/register');
 
     }
-    public function calendrier($name)
-    {
-        return view('link/calendar');
-    }
+
 
     public function articlesbyauthor($name)
     {
@@ -77,7 +74,7 @@ class LinkController extends \App\Http\Controllers\Controller
             ->where('users.name', $name)
             ->paginate(16);
         // $articles = Article::where('autor', $name)->orderBy('created_at', 'desc')->paginate(5);
-        return view('link/articlesbyauthor', array(
+        return \view('Link/articlesbyauthor', array(
             'articles' => $articles,
             'nom' => $name));
     }
@@ -103,10 +100,13 @@ class LinkController extends \App\Http\Controllers\Controller
                 'users.image as image',
                 'comments.created_at as date')
             ->where('articles.id', $id)
+            ->where('comments.ephemere', '>=', new \DateTime('today'))
             ->get();
 
-        // return view('link/articlebyid')->with('articles', $articles); //on passe les information de l'articles récupéré par son id
-        return view('link/articlebyid', array(
+
+
+        // return \view('Link/articlebyid')->with('articles', $articles); //on passe les information de l'articles récupéré par son id
+        return \view('Link/articlebyid', array(
             'articles' => $articles,
             'comments' => $comments));
     }
@@ -133,7 +133,7 @@ class LinkController extends \App\Http\Controllers\Controller
             $article->save();
             return redirect()->route('articles');
         }
-        return view('link/administrator')->with('article', $article); //si il s'agit d'un get on passe les informations de l'articles dans la page d'administrator
+        return view('Link/administrator')->with('article', $article); //si il s'agit d'un get on passe les informations de l'articles dans la page d'administrator
     }
 
     public function createArticle(Request $request)
@@ -156,6 +156,7 @@ class LinkController extends \App\Http\Controllers\Controller
         $comment->autor = Auth::user()->id;
         $comment->message = $param['comment'];
         $comment->article = $param['article'];
+        $comment->ephemere = $param['ephemere'];
         $comment->save();
         return redirect()->action('LinkController@articlebyid', $param['article']); //On actione la fonction articlebyid qui attends un paramètre l'id
     }

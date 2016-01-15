@@ -65,6 +65,8 @@
                                 <input type="hidden" name="article" value="{{$article->id}}">
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                 <button type="submit" class="btn btn-primary">Commenter</button>
+                                &nbsp;&nbsp;
+                                <input type="date" name="ephemere" required/>
                             </form>
                         </div>
                     <hr>

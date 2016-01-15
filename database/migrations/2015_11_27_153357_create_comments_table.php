@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration {
 			$table->integer('autor');
 			$table->text('message');
 			$table->integer('article');
+			$table->date('ephemere');
 			$table->timestamps();
 		});
 	}
